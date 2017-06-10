@@ -12,10 +12,7 @@ class ContactForm extends Model
 {
     public $name;
     public $email;
-    public $subject;
     public $body;
-    public $verifyCode;
-
 
     /**
      * @inheritdoc
@@ -23,22 +20,8 @@ class ContactForm extends Model
     public function rules()
     {
         return [
-            // name, email, subject and body are required
-            [['name', 'email', 'subject', 'body'], 'required'],
-            // email has to be a valid email address
+            [['name', 'email',  'body'], 'required'],
             ['email', 'email'],
-            // verifyCode needs to be entered correctly
-            ['verifyCode', 'captcha'],
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            'verifyCode' => 'Verification Code',
         ];
     }
 
@@ -46,15 +29,18 @@ class ContactForm extends Model
      * Sends an email to the specified email address using the information collected by this model.
      *
      * @param string $email the target email address
-     * @return bool whether the email was sent
+     * @return boolean whether the email was sent
      */
     public function sendEmail($email)
     {
-        return Yii::$app->mailer->compose()
+        $content ="Эл. почта:".$this->email."<br />".
+            "Имя: " .'<b>'. $this->name.'</b>' . '<br>'.
+            "<h3>Суть контакта</h3>".'<b>'.$this->body.'<b>';
+        return Yii::$app->mailer->compose( ['text' => 'contact','html'=> 'contact'], ['content' => $content])
             ->setTo($email)
-            ->setFrom([$this->email => $this->name])
-            ->setSubject($this->subject)
-            ->setTextBody($this->body)
+            ->setFrom($this->email)
+//            ->setSubject($this->subject)
+//            ->setTextBody($content)
             ->send();
     }
 }

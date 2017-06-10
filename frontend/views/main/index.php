@@ -1,10 +1,17 @@
+<?php
+use frontend\widgets\Profession;
+
+/* path  */
+$homeUrl = Yii::$app->homeUrl;
+?>
+
 <div class="container">
     <div class="row">
+        <!--        Profession -->
+        <?= Profession::widget() ?>
+
         <?php
-        /* path  */
-        $homeUrl = Yii::$app->homeUrl;
-
-
+        /* Partners */
         if (!empty($modelPartners)) {
             ?>
 
