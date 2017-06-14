@@ -43,6 +43,7 @@ return [
             'showScriptName' => false,
             'rules' => [
                 'pages/<slug>' => "pages/index",
+                'blog/details/<slug>' => "blog/details",
             ],
         ],
       

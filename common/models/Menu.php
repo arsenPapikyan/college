@@ -32,6 +32,7 @@ class Menu extends \yii\db\ActiveRecord
     {
         return [
             [['parent_id', 'is_status'], 'integer'],
+            [['parent_id', ], 'default'],
             [['name', 'slug', 'create_at', 'update_at'], 'string', 'max' => 300],
         ];
     }
@@ -50,5 +51,40 @@ class Menu extends \yii\db\ActiveRecord
             'update_at' => Yii::t('app', 'Update At'),
             'is_status' => Yii::t('app', 'Is Status'),
         ];
+    }
+
+    private static function getMenuItems()
+    {
+        $items = [];
+        $resultAll = self::find()->orderBy('id')->all();
+
+        foreach ($resultAll as $val) {
+            if (empty($items[$val->parent_id])) {
+                $items[$val->parent_id] = [];
+            }
+            $items[$val->parent_id][] = $val->attributes;
+        }
+        return $items;
+    }
+
+
+    public static function viewMenuItems($parentId = 0)
+    {
+        $result = [];
+        $arrItems = self::getMenuItems();
+        if (empty($arrItems[$parentId])) {
+            return null ;
+        }
+        foreach ($arrItems[$parentId] as $val){
+            $result[] = [
+                'label' => $val['name'],
+                'url' => ["/".$val['slug']],
+                'linkOptions' => ['title' => $val['name']],
+                'items' => self::viewMenuItems($val['id']),
+//                'options' => ['class' => "dropdown"],
+            ];
+        }
+
+        return $result;
     }
 }

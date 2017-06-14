@@ -25,7 +25,6 @@
   margin: 5em 0;
 }
 
-
 .triger_info {
   border: 20px solid transparent;
   border-top: 20px solid #ACB8B8;
@@ -39,4 +38,25 @@
   background-color: #ACB8B8;
   border-radius: 5px;
   padding: 20px 40px;
+}
+
+.jarallax {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+.title {
+  margin: 5em auto;
+}
+.titlePages {
+  margin: 7em 1em;
+}
+
+.contentProfession {
+  //margin-left: 10em;
+}
+
+.contentProfession img{
+margin-bottom: 1em;
 }

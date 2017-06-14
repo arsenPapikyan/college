@@ -3,6 +3,8 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "blog".
@@ -22,6 +24,30 @@ use Yii;
  */
 class Blog extends \yii\db\ActiveRecord
 {
+
+    public function behaviors()
+    {
+        return [
+            'slug' => [
+                'class' => 'Zelenin\yii\behaviors\Slug',
+                'slugAttribute' => 'slug',
+                'attribute' => 'title',
+                // optional params
+                'ensureUnique' => true,
+                'replacement' => '-',
+                'lowercase' => true,
+                'immutable' => true,
+                // If intl extension is enabled, see http://userguide.icu-project.org/transforms/general.
+                'transliterateOptions' => 'Russian-Latin/BGN; Any-Latin; Latin-ASCII; NFD; [:Nonspacing Mark:] Remove; NFC;'
+            ],
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
+                'value' => new Expression('NOW()'),
+            ],
+        ];
+    }
     /**
      * @inheritdoc
      */
@@ -36,11 +62,11 @@ class Blog extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'keywords', 'description', 'short_text', 'content', 'slug'], 'required'],
+            [['title',  'content'], 'required'],
             [['short_text', 'content'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['is_active'], 'integer'],
-            [['title', 'keywords', 'description', 'slug'], 'string', 'max' => 255],
+            [['title', 'keywords', 'description', 'slug'], 'string'],
         ];
     }
 

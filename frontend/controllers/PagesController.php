@@ -18,7 +18,8 @@ class PagesController extends Controller
         if (isset($getRequest['slug']) && $getRequest['slug'] !== '') {
             $model = Pages::find()
                 ->where([
-                    'slug' => $getRequest['slug']
+                    'slug' => $getRequest['slug'],
+                    'is_active' => 1,
                 ])
                 ->asArray()
                 ->one();

@@ -19,7 +19,7 @@ class PagesControl extends Pages
     {
         return [
             [['id', 'is_active'], 'integer'],
-            [['title', 'content', 'keywords', 'description', 'slug', 'created_at', 'updated_at'], 'safe'],
+            [['title', 'content', 'keywords', 'description', 'slug', 'created_at', 'updated_at'], 'trim'],
         ];
     }
 

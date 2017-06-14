@@ -27,7 +27,7 @@
   margin: 5em 0;
 }
 
-/* line 29, ../sass/_custom.scss */
+/* line 28, ../sass/_custom.scss */
 .triger_info {
   border: 20px solid transparent;
   border-top: 20px solid #ACB8B8;
@@ -36,10 +36,32 @@
   left: 44%;
 }
 
-/* line 37, ../sass/_custom.scss */
+/* line 36, ../sass/_custom.scss */
 .contact__info_blog {
   margin-top: 5em;
   background-color: #ACB8B8;
   border-radius: 5px;
   padding: 20px 40px;
+}
+
+/* line 43, ../sass/_custom.scss */
+.jarallax {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+/* line 49, ../sass/_custom.scss */
+.title {
+  margin: 5em auto;
+}
+
+/* line 52, ../sass/_custom.scss */
+.titlePages {
+  margin: 7em 1em;
+}
+
+/* line 60, ../sass/_custom.scss */
+.contentProfession img {
+  margin-bottom: 1em;
 }

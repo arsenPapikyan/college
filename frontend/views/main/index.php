@@ -5,6 +5,7 @@ use frontend\widgets\Profession;
 $homeUrl = Yii::$app->homeUrl;
 ?>
 
+
 <div class="container">
     <div class="row">
         <!--        Profession -->
@@ -18,13 +19,10 @@ $homeUrl = Yii::$app->homeUrl;
             <div class="col-xs-12 partners">
                 <div class="row">
 
-                    <div class="titlePartners">
+                    <div class=" title titlePartners">
                         <h2 class="text-center"> Մեր գործընկերները</h2>
                     </div>
-
-
                     <?php
-
                     foreach ($modelPartners as $val) {
                         ?>
                         <div class="col-xs-2">

@@ -9,12 +9,12 @@ if (!empty($profession)) {
         <div class="row">
             <!--   title  -->
 
-            <div class="col-xs-12">
+            <div class="col-xs-12 title">
                 <h2 class="text-center"><?= $profession['name'] ?></h2>
             </div>
 
             <!--   content -->
-            <div class="col-xs-12">
+            <div class="col-xs-12 contentProfession">
                 <div class="row">
 
                     <?php

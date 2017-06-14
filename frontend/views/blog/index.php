@@ -13,50 +13,71 @@ if (!empty($content)) {
     <div class="container">
         <div class="row">
 
-            <div class="col-xs-12 ">
-                <div class="row ">
+            <?php
+            $temp = 2;
+            foreach ($content as $key => $val) {
+                if ($key == $temp) {
+                    ?>
+                    <div class="row">
                     <?php
 
-                    foreach ($content as $val) {
-                        ?>
-                        <div class="col-xs-6 col-sm-4">
-                            <div class="row">
-                                <a href="<?= $homeUrl ?>blog/details/<?= $val['slug'] ?>">
-                                    <img src="<?= $homeUrl ?>images/blog/<?= $val['blogImages'][0]["img_name"]?>"
-                                         class="img-responsive"
-                                         alt="<?= $val['title']?>">
+                }
+
+                ?>
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div>
+
+                        <a href="<?= $homeUrl ?>blog/details/<?= $val['slug'] ?>">
+                            <img src="<?= $homeUrl ?>images/blog/200x150/<?= $val['blogImages'][0]["img_name"] ?>"
+                                 class="img-responsive"
+                                 alt="<?= $val['title'] ?>">
                             <p>
-                                <?= $val['title']?>
+                                <?= $val['title'] ?>
                             </p>
-                                </a>
-                            </div>
-                        </div>
-                        <?php
+                        </a>
 
-                    }
-
-                    ?>
+                        <a href="<?= $homeUrl ?>blog/details/<?= $val['slug'] ?>">
+                                <?= $val['title'] ?>
+                        </a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-xs-12 ">
-                <div class="row pull-right">
-
+                <?php
+                if ($key == $temp) {
+                    $temp += 3;
+                    ?>
+                    </div>
                     <?php
-                    echo LinkPager::widget([
-                        'pagination' => $pagination,
-                        'hideOnSinglePage' => true,
-                        'registerLinkTags' => true,
-                        'linkOptions' => [
-                            'class' => 'filterCategoryMenu',
-                        ],
 
-                    ]);
+                }
+//                if ($key == 2){
+//                    break;
+//                }
 
-                    ?>
-                </div>
+            }
+
+            ?>
+
+
+
+        <div class="col-xs-12 ">
+            <div class="row pull-right">
+
+                <?php
+                echo LinkPager::widget([
+                    'pagination' => $pagination,
+                    'hideOnSinglePage' => true,
+                    'registerLinkTags' => true,
+                    'linkOptions' => [
+                        'class' => 'filterCategoryMenu',
+                    ],
+
+                ]);
+
+                ?>
             </div>
         </div>
+    </div>
     </div>
     <?php
 }
